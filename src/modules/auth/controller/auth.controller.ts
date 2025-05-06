@@ -9,6 +9,7 @@ import {
 import { AuthService } from '../service/auth.service';
 import { JwtAuthGuard } from '../jwt/jwt-auth.guard';
 import { Request as ExpressRequest } from 'express';
+import { CreateUserDto } from 'src/modules/user/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -30,5 +31,10 @@ export class AuthController {
       message: '토큰이 유효합니다.',
       user: req.user,
     };
+  }
+
+  @Post('signup')
+  async register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.registerUser(createUserDto);
   }
 }
