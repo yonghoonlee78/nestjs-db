@@ -1,1 +1,1 @@
-# db-setting
+# nestjs-db
