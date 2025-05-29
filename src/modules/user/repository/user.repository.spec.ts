@@ -38,7 +38,7 @@ describe('UserRepository', () => {
     mockRepo = module.get(getRepositoryToken(User));
   });
 
-  it('should create a new user', async () => {
+  it('새 사용자를 생성해야 합니다.', async () => {
     const newUser = { ...createUserDto, id: 1 } as User;
     mockRepo.create.mockReturnValue(newUser);
     mockRepo.save.mockResolvedValue(newUser);
@@ -49,33 +49,33 @@ describe('UserRepository', () => {
     expect(mockRepo.save).toHaveBeenCalledWith(newUser);
   });
 
-  it('should find all users', async () => {
+  it('모든 사용자를 조회해야 합니다.', async () => {
     const users = [{ id: 1 }, { id: 2 }] as User[];
     mockRepo.find.mockResolvedValue(users);
     const result = await userRepository.findAll();
     expect(result).toEqual(users);
   });
 
-  it('should find one user', async () => {
+  it('특정 사용자를 조회해야 합니다.', async () => {
     const user = { id: 1, userId: 'testuser' } as User;
     mockRepo.findOne.mockResolvedValue(user);
     const result = await userRepository.findOne({ userId: 'testuser' });
     expect(result).toEqual(user);
   });
 
-  it('should count all users', async () => {
+  it('전체 사용자 수를 계산해야 합니다.', async () => {
     mockRepo.count.mockResolvedValue(5);
     const result = await userRepository.countAll();
     expect(result).toBe(5);
   });
 
-  it('should check if user exists by userId', async () => {
+  it('userId로 사용자가 존재하는지 확인해야 합니다.', async () => {
     mockRepo.count.mockResolvedValue(1);
     const exists = await userRepository.existsByUserId('testuser');
     expect(exists).toBe(true);
   });
 
-  it('should update a user', async () => {
+  it('사용자를 수정해야 합니다.', async () => {
     const existingUser = { id: 1, userId: 'testuser' } as User;
     const updatedUser = { ...existingUser, email: 'updated@example.com' };
     mockRepo.findOne.mockResolvedValue(existingUser);
@@ -89,7 +89,7 @@ describe('UserRepository', () => {
     expect(result).toEqual(updatedUser);
   });
 
-  it('should delete a user', async () => {
+  it('사용자를 삭제해야 합니다.', async () => {
     await userRepository.delete('testuser');
     expect(mockRepo.delete).toHaveBeenCalledWith({ userId: 'testuser' });
   });
